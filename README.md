@@ -1,1 +1,1 @@
-A demo of Suspense.lazy in a Github clone.
+A demo of React.lazy in a Github clone.
