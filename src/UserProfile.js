@@ -9,7 +9,6 @@ const Profile = styled.div`
 
 const UserProfile = ({ login, repos }) => (
   <Profile>
-    <h1>{login}</h1>
     {repos.map(repo => (
       <RepoCard
         name={repo.name}

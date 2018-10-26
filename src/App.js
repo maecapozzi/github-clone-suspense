@@ -1,6 +1,10 @@
 import React, { Component, Suspense, lazy } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { Container, Row, Col } from "react-grid-system";
+
+import { SearchBar } from "./components/SearchBar";
+import { SearchInput } from "./components/SearchInput";
 
 const UserProfile = lazy(() => import("./UserProfile"));
 
@@ -9,19 +13,31 @@ const SearchWrapper = styled.div`
   padding: 20px;
 `;
 
-const SearchBar = styled.input`
-  height: 20px;
-  width: 200px;
-  border: 1px solid black;
-`;
-
 const SearchButton = styled.button`
   height: 30px;
   width: 100px;
 `;
 
-const Loading = styled.h1`
+const Loading = styled.div`
   text-align: center;
+`;
+
+const Blurred = styled.div`
+  height: 500px;
+  @supports (backdrop-filter: blur(10px)) or
+    (--webkit-backdrop-filter: blur(10px)) {
+    background-color: blue;
+    backdrop-filter: blur(10px);
+  }
+`;
+
+const Title = styled.h1`
+  font-family: "Roboto", sans-serif;
+  font-size: 100px;
+`;
+
+const Text = styled.h3`
+  font-family: "Roboto", sans-serif;
 `;
 
 class App extends Component {
@@ -65,23 +81,60 @@ class App extends Component {
   };
 
   render() {
+    const { value } = this.state;
     return (
-      <div className="App">
-        <SearchWrapper>
-          <form onSubmit={this.search}>
-            <SearchBar placeholder="search" onChange={this.handleChange} />
-          </form>
-        </SearchWrapper>
-        {this.state.loading ? <Loading>Fetching data</Loading> : null}
-        {this.state.repos.length > 0 ? (
-          <Suspense fallback={<Loading>Fetching component...</Loading>}>
-            <UserProfile
-              login={this.state.profile.login}
-              repos={this.state.repos}
-            />
-          </Suspense>
-        ) : null}
-      </div>
+      <Container>
+        <div className="App">
+          <Row>
+            <Col sm={12}>
+              <SearchWrapper>
+                <Title>Github</Title>
+                <SearchBar
+                  value={value}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.search}
+                  searchBarProps={({ value, handleChange, handleSubmit }) => (
+                    <SearchInput
+                      value={value}
+                      handleChange={handleChange}
+                      handleSubmit={handleSubmit}
+                    />
+                  )}
+                />
+              </SearchWrapper>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12}>
+              {this.state.loading ? <Loading>Fetching data</Loading> : null}
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={2}>
+              {this.state.profile ? (
+                <Suspense fallback={<Blurred />}>
+                  <h1>{this.state.profile.login}</h1>
+                </Suspense>
+              ) : null}
+              <Text>
+                Here is some more info that can be displayed without waiting for
+                data to come back from the API
+              </Text>
+              <Text>
+                And we've got a bit more here! We don't have to wait to display
+                it!
+              </Text>
+            </Col>
+            <Col sm={10}>
+              {this.state.repos.length > 0 ? (
+                <Suspense fallback={<Blurred />}>
+                  <UserProfile repos={this.state.repos} />
+                </Suspense>
+              ) : null}
+            </Col>
+          </Row>
+        </div>
+      </Container>
     );
   }
 }

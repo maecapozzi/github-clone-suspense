@@ -3348,6 +3348,10 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+flexbox-grid@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/flexbox-grid/-/flexbox-grid-1.0.0.tgz#685a393461550f411a128dbc521edb1bcefe5cb9"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -6776,6 +6780,13 @@ react-dom@^16.6.0:
 react-error-overlay@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.0.5.tgz#716ff1a92fda76bb89a39adf9ce046a5d740e71a"
+
+react-grid-system@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-grid-system/-/react-grid-system-4.3.1.tgz#10c115d2fae05c30a1f5720701e7f0229048eda0"
+  dependencies:
+    lodash "^4.17.10"
+    prop-types "^15.6.2"
 
 react-is@^16.3.1:
   version "16.6.0"
