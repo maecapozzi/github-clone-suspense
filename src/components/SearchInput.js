@@ -6,7 +6,7 @@ import { StyledLink } from "./styled-components/Link/StyledLink";
 export const SearchInput = ({ value, handleChange, handleSubmit }) => (
   <div style={{ display: "flex", padding: "20px" }}>
     <Input
-      placeholder="Search for an artist"
+      placeholder="Search for a Github user"
       type="text"
       value={value}
       onChange={handleChange}

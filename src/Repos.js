@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import RepoCard from "./RepoCard";
+import React from 'react'
+import styled from 'styled-components'
+import RepoCard from './RepoCard'
 
 const Profile = styled.div`
   margin: 0 auto;
   text-align: center;
-`;
+`
 
-const UserProfile = ({ login, repos }) => (
+const Repos = ({ login, repos }) => (
   <Profile>
     {repos.map(repo => (
       <RepoCard
@@ -17,6 +17,6 @@ const UserProfile = ({ login, repos }) => (
       />
     ))}
   </Profile>
-);
+)
 
-export default UserProfile;
+export default Repos
